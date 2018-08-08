@@ -1,0 +1,49 @@
+publish_mode: editorial_workflow
+backend:
+  site_domain: http://localhost:8000
+  name: github
+  repo: cwc-bzl/blog
+  branch: master
+  base_url: http://localhost:3000
+  auth_endpoint: /auth
+
+site_id: http://localhost:8000
+media_folder: static/assets
+public_folder: assets
+
+collections:
+  - name: home
+    label: home
+    folder: _home
+    create: true
+    fields:
+      - { name: path, label: path }
+      - { name: publish-date, label: "Publish Date", widget: date }
+      - { name: body, label: Content, widget: markdown }
+  - name: daily-promotions
+    label: Daily Promotions
+    folder: _promotions-daily
+    create: true
+    fields:
+      - { name: path, label: path }
+      - { name: promotion, label: "Promotion Name" }
+      - { name: promotion-terms, label: "Promotion Terms", widget: markdown }
+      - label: "Promotion Tag (Optional)"
+        name: tag
+        widget: "select"
+        options:
+          - { label: "New", value: "NEW" }
+          - { label: "Special", value: "SPE" }
+          - { label: "Exclusive", value: "EXC" }
+  - name: promotion-banner
+    label: Main Promotion Banner
+    folder: _promotions-main
+    create: true
+    fields:
+      - { name: path, label: path }
+      - { name: promotion, label: "Promotion Title" }
+      - { name: promotion-terms, label: "Promotion Terms", widget: markdown }
+      - { name: start-date, label: "Promotion Start Date", widget: date }
+      - { name: end-date, label: "Promotion End Date", widget: date }
+      - { name: "thumbnail", label: "Promotion Image", widget: "image" }
+      - { name: button-cta, label: "Button Call To Action Text" }
